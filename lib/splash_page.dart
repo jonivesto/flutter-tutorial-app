@@ -1,12 +1,12 @@
 import 'package:esimerkki_app/home_page.dart';
+import 'package:esimerkki_app/logic/cubit/splash_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'constants.dart';
 
-class SplashPage
- extends StatefulWidget {
-  const SplashPage
-  ({Key? key}) : super(key: key);
+class SplashPage extends StatefulWidget {
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
   State<SplashPage> createState() => _SplashPageState();
@@ -14,22 +14,33 @@ class SplashPage
 
 class _SplashPageState extends State<SplashPage> {
 
-@override
+  @override
   void initState() {
-    _finish();
     super.initState();
+    context.read<SplashCubit>().finish();
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope
-    (onWillPop: () async{ return false; },
-    child: Container(color: Colors.amber, child: Center(child: Image.asset("assets/icon/icon.png", height: 140,),),));
-  }
-  
-  void _finish() async{
-    await Future.delayed(const Duration(seconds: 2));
-    // ignore: use_build_context_synchronously
-    Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
+    return BlocListener<SplashCubit, SplashState>(
+          listener: (context, state) {
+            if(state is SplashFinish){
+               Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
+            }
+          },
+          child: WillPopScope(
+              onWillPop: () async {
+                return false;
+              },
+              child: Container(
+                color: Colors.amber,
+                child: Center(
+                  child: Image.asset(
+                    "assets/icon/icon.png",
+                    height: 140,
+                  ),
+                ),
+              )),
+        );
   }
 }
