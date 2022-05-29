@@ -1,4 +1,5 @@
 import 'package:esimerkki_app/logic/cubit/profile_cubit.dart';
+import 'package:esimerkki_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,7 +26,14 @@ class _ProfilePageState extends State<ProfilePage> {
           return Column(
           children: [
             Image.network(state.avatarUrl),
-            Text(state.name)
+            Text(state.name),
+            const Divider(),
+            ElevatedButton(onPressed: () {
+              MyApp.setLocale(context, const Locale("fi",""));
+            }, child: const Text("Suomi")),
+            ElevatedButton(onPressed: () {
+              MyApp.setLocale(context, const Locale("en",""));
+            }, child: const Text("English")),
           ],
         );
         } else if(state is ProfileFailure){

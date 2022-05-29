@@ -1,6 +1,7 @@
 
 import 'package:esimerkki_app/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -35,10 +36,10 @@ class _HomePageState extends State<HomePage> {
       ),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterTop,
-      bottomNavigationBar: BottomNavigationBar(items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Koti"),
-        BottomNavigationBarItem(icon: Icon(Icons.message), label: "Viestit"),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Proliifi"),
+      bottomNavigationBar: BottomNavigationBar(items: [
+        BottomNavigationBarItem(icon: const Icon(Icons.home), label: AppLocalizations.of(context)!.tabLabelHome),
+        BottomNavigationBarItem(icon: const Icon(Icons.message), label:  AppLocalizations.of(context)!.tabLabelMessages),
+        BottomNavigationBarItem(icon: const Icon(Icons.person), label:  AppLocalizations.of(context)!.tabLabelProfile),
       ],
       currentIndex: (_controller.positions.isNotEmpty)?_controller.page!.toInt():0,
       onTap: (i) => _onPageClick(i),),
