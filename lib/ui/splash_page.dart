@@ -1,9 +1,9 @@
-import 'package:esimerkki_app/home_page.dart';
+
 import 'package:esimerkki_app/logic/cubit/splash_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'constants.dart';
+import '../constants.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 
-import 'package:esimerkki_app/profile_page.dart';
+import 'package:esimerkki_app/ui/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

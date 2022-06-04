@@ -1,5 +1,7 @@
 import 'package:esimerkki_app/logic/cubit/splash_cubit.dart';
-import 'package:esimerkki_app/splash_page.dart';
+
+import 'package:esimerkki_app/ui/home_page.dart';
+import 'package:esimerkki_app/ui/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,7 +9,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
-import 'home_page.dart';
+
 import 'logic/cubit/profile_cubit.dart';
 
 void main() {
