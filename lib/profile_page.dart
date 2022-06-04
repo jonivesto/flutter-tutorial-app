@@ -34,6 +34,13 @@ class _ProfilePageState extends State<ProfilePage> {
             ElevatedButton(onPressed: () {
               MyApp.setLocale(context, const Locale("en",""));
             }, child: const Text("English")),
+            const Divider(),
+            ElevatedButton(onPressed: () {
+              MyApp.setTheme(context, "light");
+            }, child: const Text("Light")),
+            ElevatedButton(onPressed: () {
+              MyApp.setTheme(context, "dark");
+            }, child: const Text("Dark")),
           ],
         );
         } else if(state is ProfileFailure){

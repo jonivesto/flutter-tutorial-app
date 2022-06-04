@@ -29,6 +29,17 @@ class MyApp extends StatefulWidget {
     preferences.setString("language", locale.languageCode);
   }
 
+  static setTheme(BuildContext context, String themeName) async{
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+
+    state?.setState(() {
+      state._theme = Themes.getThemeByName(themeName);
+    });
+
+    var preferences = await SharedPreferences.getInstance();
+    preferences.setString("theme", themeName);
+  }
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -36,13 +47,19 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   Locale _locale = const Locale('fi', '');
-
+  ThemeData _theme = Themes.lightTheme;
+  
   @override
   void initState() {
     super.initState();
     _getLocale().then((locale) {
       setState(() {
         _locale = locale;
+      });
+    });
+    _getTheme().then((theme) {
+      setState(() {
+        _theme = theme;
       });
     });
   }
@@ -52,6 +69,13 @@ class _MyAppState extends State<MyApp> {
     String language = preferences.getString("language") ?? "fi";
 
     return Locale(language, "");
+  }
+
+  Future<ThemeData> _getTheme() async{
+    var preferences = await SharedPreferences.getInstance();
+    String themeName = preferences.getString("theme") ?? "light";
+
+    return Themes.getThemeByName(themeName);
   }
 
   @override
@@ -80,9 +104,7 @@ class _MyAppState extends State<MyApp> {
           Locale('en', ''),
           Locale('fi', ''),
         ],
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: _theme,
         initialRoute: Routes.splashRoute,
         onGenerateRoute: (settings) {
           switch (settings.name) {
